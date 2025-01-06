@@ -1,24 +1,36 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRoute from "./routes/userRoute.js";
+import authRoute from "./routes/authRoute.js";
 
 dotenv.config();
 
 const app = express();
 
-const connect = async () => {
-  await mongoose
-    .connect(process.env.MONGO_URL)
-    .then(() => {
-      console.log("connected to db successfully");
-    })
-    .catch((err) => {
-      console.error("Database connection error:", err);
-    });
+// Middleware to parse JSON requests
+app.use(express.json());
 
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("Connected to the database successfully");
+  } catch (err) {
+    console.error("Database connection error:", err);
+    process.exit(1); // Exit the process if the DB connection fails
+  }
+};
+
+// Start the server
+const startServer = () => {
   app.listen(3000, () => {
-    console.log("Connected to the server and running on 3000");
+    console.log("Server is running on port 3000");
   });
 };
 
-connect();
+// Connect to the database and start the server
+connectDB().then(startServer);
+
+// Define routes
+app.use("/api/user", userRoute);
+app.use("/api/auth", authRoute);
