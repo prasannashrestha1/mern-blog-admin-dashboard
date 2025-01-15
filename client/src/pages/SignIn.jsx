@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import image from "../assets/img.png";
 import { FaGoogle } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInSuccesss,
+  signInFailure,
+  signInStart,
+} from "../redux/user/userSlice";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -16,11 +21,10 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return setErrorMessage("All fields are required.");
+      return dispatch(signInFailure("all fields are necessary"));
     }
     try {
-      setIsLoading(true);
-      setErrorMessage(false);
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -28,20 +32,22 @@ const SignIn = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        setErrorMessage(data.message);
+        return dispatch(signInFailure(data.message));
       }
-      console.log("Response data:", data);
-      setIsLoading(false);
-      navigate("/Dashboard");
+      if (res.ok) {
+        console.log("Response data:", data);
+        dispatch(signInSuccesss(data));
+
+        navigate("/Dashboard");
+      }
     } catch (error) {
-      setErrorMessage(error.message);
-      setIsLoading(false);
+      dispatch(signInFailure(error.message));
     }
   };
 
   return (
     <div className="min-h-[80vh] pt-20 flex justify-center">
-      <div className="p-6 sm:p-12 md:p-14 flex w-[1220px] bg-[#f0efef] rounded-[20px] flex-col md:flex-row md:items-center gap-2 md:gap-8 shadow-xl border-4">
+      <div className="p-6 sm:p-12 md:p-14 flex w-[1660px] bg-[#f0efef] rounded-[20px] flex-col md:flex-row md:items-center gap-2 md:gap-8 shadow-xl border-4">
         {/* left Container */}
         <div className="flex-1 ">
           <Link
@@ -88,12 +94,8 @@ const SignIn = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <button
-                className="btn"
-                onClick={handleSubmit}
-                disabled={isLoading}
-              >
-                {isLoading ? "Loading" : "Signup"}
+              <button className="btn" onClick={handleSubmit}>
+                Sigunp
               </button>
               <button className="bg-red-50 rounded-full bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 hover:bg-gradient-to-l p-[2px] hover:shadow-xl hover:shadow-purple-600/10 group">
                 <div className="bg-white gap-2 items-center justify-center rounded-full p-1.5 transition ease-in-out duration-900 group-hover:bg-gradient-to-br group-hover:from-gray-100 group-hover:to-gray-100 font-semibol flex flex-row">
