@@ -8,6 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PageNotFound from "./pages/PageNotFound";
+import PrivateRoute from "./components/privateRoute";
 
 const App = () => {
   return (
@@ -19,8 +21,11 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/Signup" element={<SignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/Dashboard" element={<Dashboard />} />
+          </Route>
           <Route path="/projects" element={<Projects />} />
+          <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </div>
       <Footer />

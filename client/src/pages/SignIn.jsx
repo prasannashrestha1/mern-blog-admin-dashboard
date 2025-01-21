@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signInSuccesss,
   signInFailure,
   signInStart,
 } from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -46,8 +46,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-[80vh] pt-20 flex justify-center">
-      <div className="p-6 sm:p-12 md:p-14 flex w-[1660px] bg-[#f0efef] rounded-[20px] flex-col md:flex-row md:items-center gap-2 md:gap-8 shadow-xl border-4">
+    <div className="min-h-[600px] pt-20 flex justify-center text-white">
+      <div className="p-6 sm:p-12 md:p-14 flex w-[1660px] bg-[#383838] rounded-[20px] flex-col md:flex-row md:items-center gap-2 md:gap-8 shadow-xl border-4">
         {/* left Container */}
         <div className="flex-1 ">
           <Link
@@ -97,12 +97,7 @@ const SignIn = () => {
               <button className="btn" onClick={handleSubmit}>
                 Sigunp
               </button>
-              <button className="bg-red-50 rounded-full bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 hover:bg-gradient-to-l p-[2px] hover:shadow-xl hover:shadow-purple-600/10 group">
-                <div className="bg-white gap-2 items-center justify-center rounded-full p-1.5 transition ease-in-out duration-900 group-hover:bg-gradient-to-br group-hover:from-gray-100 group-hover:to-gray-100 font-semibol flex flex-row">
-                  <FaGoogle className="w-[14px] h-[14px]" color="#1d1d1d" />{" "}
-                  Continue with Google
-                </div>
-              </button>
+              <OAuth />
             </div>
             <p>
               Already have an account?{" "}
