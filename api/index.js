@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use(cookieParser());
 
 const connectDB = async () => {
   try {

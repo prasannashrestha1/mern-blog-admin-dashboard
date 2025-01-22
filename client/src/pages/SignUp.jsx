@@ -1,7 +1,5 @@
-import { Alert, Spinner } from "flowbite-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import image from "../assets/img.png";
 import { FaGoogle } from "react-icons/fa";
 
 const SignUp = () => {
@@ -35,7 +33,7 @@ const SignUp = () => {
       setIsLoading(false);
       navigate("/Dashboard");
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage("the error is " + error.message);
       setIsLoading(false);
     }
   };

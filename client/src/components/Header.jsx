@@ -68,7 +68,7 @@ const Header = () => {
     //     </Navbar.Collapse>
     //   </div>
     // </Navbar>
-    <div className="p-4 bg-[#383838] flex-col lg:flex-row flex justify-center items-center gap-5">
+    <div className="p-4 bg-[#1F1F1F] border-b-2 border-gray-600 flex-col lg:flex-row flex justify-center items-center gap-5">
       {/* header */}
       <div className="max-w-[1660px] w-full flex-1 flex justify-between ">
         <div className="flex items-center font-semibold text-xl text-white">
@@ -78,7 +78,7 @@ const Header = () => {
           Blogs
         </div>
         {/* search box */}
-        <div className=" gap-4 items-center hidden sm:flex">
+        <div className=" gap-4 items-center hidden sm:flex text-white">
           <form className="flex items-center max-w-[250px] mx-auto ">
             <div className="flex items-center border-2 bg-gray-50 p-3 border-slate-300 text-gray-900 text-sm rounded-lg  focus-within:ring-blue-500 focus-within:border-blue-500  w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus-within:ring-blue-500 dark:focus-within:border-blue-500">
               <input
@@ -95,21 +95,21 @@ const Header = () => {
           <div className="hidden gap-4 font-semibold  lg:flex ">
             <Link
               to="/"
-              className="hover:text-white border-[#383838] hover:border-white border-b-2 transition ease-in-out duration-500"
+              className="hover:text-blue-400 border-[#1F1F1F] hover:border-blue-400 border-b-2"
             >
               Home
             </Link>
 
             <Link
               to="/about"
-              className="border-[#383838] hover:text-white hover:border-white border-b-2 transition ease-in-out duration-500"
+              className="border-[#1F1F1F] hover:text-blue-400 hover:border-blue-400 border-b-2 transition ease-in-out duration-500"
             >
               About
             </Link>
 
             <Link
               to="/Projects"
-              className="border-[#383838] hover:text-white hover:border-white border-b-2 transition ease-in-out duration-500"
+              className="border-[#1F1F1F] hover:text-blue-400 hover:border-blue-400 border-b-2 transition ease-in-out duration-500"
             >
               Contact
             </Link>
@@ -139,26 +139,26 @@ const Header = () => {
         </div>
       </div>
       {isOpen && (
-        <div className=" w-full flex bg-green-300 border-2 rounded-2xl justify-center lg:hidden">
+        <div className=" w-full flex border-2 border-[#333232] bg-[#1B1B1B] rounded-2xl justify-center lg:hidden text-white">
           {" "}
           <div className="flex flex-col font-semibold items-center p-4">
             <Link
               to="/"
-              className="hover:text-white border-[#383838] hover:border-white border-b-2 transition ease-in-out duration-500 p-4 w-full text-center"
+              className="hover:text-blue-400 hover:border-blue-400 border-[#333232] border-b-2 transition ease-in-out duration-500 p-4 w-full text-center"
             >
               Home
             </Link>
 
             <Link
               to="/about"
-              className="hover:text-white border-[#383838] hover:border-white border-b-2 transition ease-in-out duration-500 p-4 w-full text-center"
+              className="hover:text-blue-400 hover:border-blue-400 border-[#333232]  border-b-2 transition ease-in-out duration-500 p-4 w-full text-center"
             >
               About
             </Link>
 
             <Link
               to="/Projects"
-              className="hover:text-white border-[#383838] hover:border-white border-b-2 transition ease-in-out duration-500 p-4 w-full text-center"
+              className="hover:text-blue-400 hover:border-blue-400 border-[#333232] border-b-2 transition ease-in-out duration-500 p-4 w-full text-center"
             >
               Contact
             </Link>

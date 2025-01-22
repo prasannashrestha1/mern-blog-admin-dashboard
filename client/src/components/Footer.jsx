@@ -8,7 +8,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="p-4 md:p-12 flex justify-center items-center bg-[#f8f7f7]">
+    <div className="p-4 md:p-12 flex justify-center items-center bg-[#1F1F1F] border-t-2 border-gray-800">
       <div className="bg-[#1d1d1d] p-6 md:p-10 flex flex-col gap-8 text-gray-200 max-w-[1660px] border-slate-500 border-4 rounded-[24px] flex-1">
         {/* top content */}
         <div className="flex flex-col sm:flex-row gap-4 ">

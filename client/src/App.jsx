@@ -15,7 +15,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <div className="p-4 md:p-8">
+      {/* <div className="p-4 md:p-8 bg-[#585858]"> */}
+      <div className="bg-[#151515]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
