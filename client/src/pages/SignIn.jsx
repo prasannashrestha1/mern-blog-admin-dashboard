@@ -46,8 +46,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-[600px] pt-20 flex justify-center text-white">
-      <div className="p-6 sm:p-12 md:p-14 flex w-[1660px] bg-[#383838] rounded-[20px] flex-col md:flex-row md:items-center gap-2 md:gap-8 shadow-xl border-4">
+    <div className="h-screen py-20 px-6 flex justify-center items-center text-white">
+      <div className="p-6 sm:p-12 md:p-14 flex w-[1660px]  bg-[#383838] rounded-[20px] flex-col md:flex-row md:items-center gap-2 md:gap-8 shadow-xl border-4">
         {/* left Container */}
         <div className="flex-1 ">
           <Link
@@ -64,7 +64,7 @@ const SignIn = () => {
           </p>
         </div>
 
-        <div className="h-[4px] md:h-full w-full md:w-[4px] bg-[#cbcaca] "></div>
+        <div className="h-[4px] md:min-h-full w-full md:w-[4px] bg-[#776c6c] "></div>
 
         {/* right Container */}
         <div className="flex-1 ">
@@ -95,7 +95,7 @@ const SignIn = () => {
             </div>
             <div className="flex flex-col gap-3">
               <button className="btn" onClick={handleSubmit}>
-                Sigunp
+                Sign in
               </button>
               <OAuth />
             </div>
@@ -103,9 +103,9 @@ const SignIn = () => {
               Already have an account?{" "}
               <Link
                 className=" text-blue-400 hover:text-blue-800 hover:font-semibold"
-                to="/Signin"
+                to="/signup"
               >
-                Signin
+                Sign up
               </Link>
             </p>
             {errorMessage && (

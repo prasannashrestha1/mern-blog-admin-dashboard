@@ -1,35 +1,59 @@
 import React, { useState } from "react";
 import { MdPerson } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  updateFailure,
+  updateStart,
+  updateSuccess,
+} from "../redux/user/userSlice";
+import Modal from "./Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 const DashProfile = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [formData, setFormData] = useState({});
 
   const updateCredentials = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password || !formData.username) {
-      return setErrorMessage("All Fields are necessary");
+    if (Object.keys(formData).length === 0) {
+      return;
     }
+
     try {
-      const res = await fetch("/api/auth/update", {
-        method: "POST",
+      dispatch(updateStart());
+      const userID = currentUser._id;
+      const res = await fetch(`/api/user/update/${userID}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: "include",
       });
-      res;
+      const data = await res.json();
+      if (data.success === false) {
+        return dispatch(updateFailure(data.message));
+      }
+      dispatch(updateSuccess(data));
     } catch (error) {
-      console.log(error.message);
+      dispatch(updateFailure(error.message));
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
-    console.log(formData);
+  const handleSignout = async () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("persist:root"); // Or specific key where JWT is stored
+    localStorage.removeItem("jwt_token");
+    navigate("/signin");
   };
+
+  const handleChange = async (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+  console.log(currentUser._id);
   return (
     // <div className="flex flex-1 justify-center mt-[80px] md:mt-[120px] p-3">
     //   <div className="flex flex-col gap-4 border-2 border-[#333232] bg-[#1F1F1F] text-white flex-1 max-w-[600px] h-fit p-12 rounded-3xl">
@@ -77,7 +101,7 @@ const DashProfile = () => {
             <MdPerson className="md:w-[120px] w-[60px] md:h-[120px] h-[60px]" />
           </div>
         </div>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={updateCredentials} className="flex flex-col gap-4">
           <input
             placeholder="Username"
             type="text"
@@ -101,13 +125,15 @@ const DashProfile = () => {
             className="inpt"
             onChange={handleChange}
           />
-          <button type="submit" className="btn" onClick={updateCredentials}>
+          <button type="submit" className="btn">
             Update
           </button>
         </form>
         <div className="flex justify-between text-red-600 font-semibold ">
-          <span className="hover:text-red-700">Delete Account</span>
-          <span className="hover:text-red-700">Sign out</span>
+          <Modal />
+          <span onClick={handleSignout} className="hover:text-red-700">
+            Sign out
+          </span>
         </div>
         {errorMessage && (
           <div className="w-full bg-red-300 font-semibold text-[#ff3333] p-4 rounded-xl">

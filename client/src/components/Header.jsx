@@ -1,4 +1,4 @@
-import { Button, Navbar, TextInput } from "flowbite-react";
+import { Button, DropdownDivider, Navbar, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -6,8 +6,12 @@ import { FaMoon } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
+import { Dropdown } from "flowbite-react";
+import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const [isOpen, setIsOpen] = useState(false);
   const path = useLocation().pathname;
   return (
@@ -121,6 +125,28 @@ const Header = () => {
           <button className="bg-gradient-to-r border-slate-400 border-2 from-purple-400 to-red-400 hover:bg-gradient-to-l py-2 px-4 rounded-2xl text-white font-semibold transition ease-in-out duration-300  ">
             Signin
           </button>
+          {/* <Dropdown
+            icon={HiViewGrid}
+            className="bg-[#1F1F1F] text-white min-w-[500px]"
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">{currentUser.username}</span>
+              <span className="block truncate text-sm font-medium">
+                {currentUser.email}
+              </span>
+            </Dropdown.Header>
+            <DropdownDivider className="bg-white" />
+            <Dropdown.Item className="hover:bg-gray-700" icon={HiViewGrid}>
+              <Link to="/dashboard"> Dashboard </Link>
+            </Dropdown.Item>
+            <Dropdown.Item className="hover:bg-gray-700" icon={HiCog}>
+              Home
+            </Dropdown.Item>
+            <Dropdown.Item className="hover:bg-gray-700" icon={HiLogout}>
+              Sign out
+            </Dropdown.Item>
+          </Dropdown> */}
+
           <div className="bg-transparent hover:bg-black-300">
             {isOpen ? (
               <IoCloseSharp

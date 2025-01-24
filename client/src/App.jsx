@@ -15,20 +15,17 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      {/* <div className="p-4 md:p-8 bg-[#585858]"> */}
-      <div className="bg-[#151515]">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/Signup" element={<SignUp />} />
-          <Route path="/SignIn" element={<SignIn />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/Dashboard" element={<Dashboard />} />
-          </Route>
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/*" element={<PageNotFound />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/Signup" element={<SignUp />} />
+        <Route path="/SignIn" element={<SignIn />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/Dashboard" element={<Dashboard />} />
+        </Route>
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/*" element={<PageNotFound />} />
+      </Routes>
       <Footer />
     </BrowserRouter>
   );
