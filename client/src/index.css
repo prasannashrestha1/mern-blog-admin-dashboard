@@ -7,12 +7,25 @@
 }
 body {
   background-color: #151515;
+  height: 100vh;
+}
+
+.ql-editor{
+  @apply text-[1.05rem] bg-[#363636] border-none
+}
+
+.ql-toolbar{
+  @apply text-white bg-[#1F1F1F]
+}
+.ql-active{
+  @apply text-white 
 }
 
 .btn {
-  @apply bg-gradient-to-r from-purple-400 to-green-400 hover:bg-gradient-to-l p-2 rounded-2xl  text-white font-semibold  ;
+  @apply bg-gradient-to-r from-purple-400 to-green-400 hover:bg-gradient-to-l p-2 rounded-2xl  text-white font-semibold  py-2 px-4;
 }
 
 .inpt {
   @apply border-[2px] border-[#333232] hover:border-white focus:border-slate-600 outline-none bg-[#222222] rounded-lg text-white text-opacity-80 font-semibold;
 }
+

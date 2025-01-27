@@ -21,7 +21,7 @@ const DashSidebar = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("persist:root"); // Or specific key where JWT is stored
     localStorage.removeItem("jwt_token");
-    navigate("/signin");
+    location.reload(true);
   };
 
   return (

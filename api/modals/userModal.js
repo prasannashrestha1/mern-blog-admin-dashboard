@@ -19,14 +19,16 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: Number,
       required: false,
-    },
-    role: {
-      type: String,
-      required: false,
+      default: 9,
     },
     country: {
       type: String,
       required: false,
+      default: "Nepal",
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

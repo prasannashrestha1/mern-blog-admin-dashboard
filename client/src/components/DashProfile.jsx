@@ -7,10 +7,11 @@ import {
   updateSuccess,
 } from "../redux/user/userSlice";
 import Modal from "./Modal/Modal";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const DashProfile = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const { loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,7 +48,7 @@ const DashProfile = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("persist:root"); // Or specific key where JWT is stored
     localStorage.removeItem("jwt_token");
-    navigate("/signin");
+    location.reload(true);
   };
 
   const handleChange = async (e) => {
@@ -125,13 +126,23 @@ const DashProfile = () => {
             className="inpt"
             onChange={handleChange}
           />
-          <button type="submit" className="btn">
-            Update
+          <button type="submit" className="btn" disabled={loading}>
+            {loading ? "Updating your profile" : "Update"}
           </button>
+          {currentUser.isAdmin && (
+            <Link to="/create-post">
+              <div className="w-full font-semibold bg-blue-400 hover:bg-blue-500 border border-blue-600 p-2 rounded-3xl text-center">
+                Create a post
+              </div>
+            </Link>
+          )}
         </form>
         <div className="flex justify-between text-red-600 font-semibold ">
           <Modal />
-          <span onClick={handleSignout} className="hover:text-red-700">
+          <span
+            onClick={handleSignout}
+            className="hover:text-red-700 cursor-pointer"
+          >
             Sign out
           </span>
         </div>
