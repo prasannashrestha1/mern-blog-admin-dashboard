@@ -11,14 +11,21 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
+    "@syncfusion/ej2-richtexteditor": "^28.1.41",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
     "firebase": "^11.2.0",
     "flowbite-react": "^0.10.2",
+    "install": "^0.13.0",
+    "jodit-react": "^5.0.10",
+    "npm": "^11.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
     "react-quill": "^2.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.0.2",
+    "react-toastify": "^11.0.3",
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {

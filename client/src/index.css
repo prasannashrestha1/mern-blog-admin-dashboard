@@ -3,22 +3,37 @@
 @tailwind utilities;
 
 * {
-  @apply transition ease-in-out duration-700
+  @apply transition ease-in-out duration-700;
 }
 body {
   background-color: #151515;
   height: 100vh;
 }
 
-.ql-editor{
-  @apply text-[1.05rem] bg-[#363636] border-none
+.ql-editor {
+  @apply text-[1.05rem] bg-[#363636];
 }
 
-.ql-toolbar{
-  @apply text-white bg-[#1F1F1F]
+.ql-toolbar {
+  @apply text-white bg-[#1F1F1F];
 }
-.ql-active{
-  @apply text-white 
+.ql-active {
+  @apply text-white;
+}
+.jodit-status-bar-link {
+  @apply hidden;
+}
+.jodit-wysiwyg {
+  background-color: #313030;
+  min-height: 240px !important;
+}
+
+.jodit-status-bar {
+  background-color: #867f7f !important;
+}
+
+.jodit-toolbar-editor-collection {
+  @apply bg-[#867f7f];
 }
 
 .btn {
@@ -28,4 +43,3 @@ body {
 .inpt {
   @apply border-[2px] border-[#333232] hover:border-white focus:border-slate-600 outline-none bg-[#222222] rounded-lg text-white text-opacity-80 font-semibold;
 }
-
